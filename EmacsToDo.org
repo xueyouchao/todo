@@ -1,0 +1,76 @@
+* Emacs Configuration for Spacemacs
+** Install spacemacs
+ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+** Modify ConfigurationAdd Shortcut
+*** C-x C-f  ~/.spacemacs
+*** Configure theme
+**** M-x package-install solarized-theme
+**** Change loading themes in dotspacemacs-themes section to be:
+      solarized-light
+      solarized-dark
+*** Add the following into defun dotspacemacs/user-config section:
+  (defun open-my-init-file()
+    (interactive)
+    (spacemacs/helm-find-files "~/.spacemacs")
+    )
+  (global-set-key (kbd "<f5>") 'open-my-init-file)
+** Install company
+
+* Emacs Configuration for Chen's Config
+** Install Emacs
+   sudo pacman -S emacs
+** Git Clone Emacs Configurations
+cd ~
+git clone https://github.com/redguardtoo/emacs.d.git .emacs.d
+** Create shortcut for colorful emacs
+create a .sh file and set file permission to be runnable, adding the following line 
+TERM=xterm-256color emacs -nw
+** set word spelling -  aspell and add dictionary aspell-en
+   sudo pacman -S aspell
+sudo pacman -S aspell-en
+** c++ section
+*** M+x open neotree
+Install all-the-icons for best effect
+**** neotree has a depency on font-lock+, font-lock+ is from MELPA unstable repo.So add font-lock+ in init-elpa.el as it is from unstable repo.
+**** restart emacs and install package font-lock+ and all-the-icons together
+**** Install fonts for all-the-icons
+***** download fonts from https://github.com/domtronn/all-the-icons.el/tree/master/fonts
+***** Install the fonts follow the following link:
+http://xmodulo.com/how-to-install-custom-fonts-in-linux-desktop.html
+**** modify ~/.emacs.d/elpa/neotree-0.5.1/neotree.el configuration
+change the following line to
+(defcustom neo-theme 'icons
+icons will automatically bind neotree to all-the-icons
+**** rebuild neotree.el file with the following command:
+emacs --batch --eval '(byte-compile-file "your-elisp-file.el")'
+(from link: http://qa.helplib.com/330234)
+*** Install clang
+    sudo pacman -S clang
+*** Install emacs plugins: Flymake, Flycheck, (optional auto-complete, auto-complete-clang) company-mode, company-c-headers,semantic, irony-mode (optional cpputils-cmake)
+*** Set search path for company-c-headers
+**** M-x customize-group company-c-headers
+**** set company C Headers Path System Directory
+/usr/include/c++/6.3.1
+/usr/include/c++/6.3.1/x86_64-pc-linux-gnu
+/usr/include/c++/6.3.1/backward
+*** M-x irony-install-server
+Get error about 'stddef.h' not found
+run clang --version to get the clang version installed e.g. 3.9.1
+edit FindLibClang.cmake under folder .emacs.d and add 3.9.1 to the file
+re-compile
+*** customize-group company -> turn on Company Auto Complete
+*** Using cpputils-cmake to create cmake project
+Demo project:
+**** Step 1: run the following in shell:
+mkdir -p hello/src;printf "#include <stdio.h>\nint main(void) {\nprintf(\"hello world\");\nreturn 0;\n}" > hello/src/main.cpp;printf "cmake_minimum_required(VERSION 2.6)\nadd_executable(main main.cpp)" > hello/src/CMakeLists.txt
+**** Step 2: cd into hello folder and run mkdir build
+**** Step 3: cd build and run cmake ../src
+**** Step 4: make
+
+
+
+
+
+
+
+     

@@ -1,0 +1,147 @@
+My PROJECT _*_ mode: org _*_
+* fips commands
+** Features
+*** Integrate Build Environment
+**** IDE
+***** Visual Studio
+***** XCode
+***** QtCreator
+**** cmake
+**** make
+**** Git
+*** Multi-Platform Support
+**** Windows
+**** OSX
+**** Linux
+**** iOS
+**** emscripten
+**** PNaCl
+**** Android
+*** Build Configuration Management
+Dozens of different build configurations, keeps the build files for each configuration separated from each other
+*** Dependency Management
+Define exports and imports to and from other fips projects,external projects will be pulled in via git; a project with external dependency will look and feel exactly the same like a completely local project.
+*** Code Generation
+Calling Python 'generator scripts' during build process
+*** Extensible
+Fips projects can implement their own fips commands, build configurations and code generator scripts.This allows projects to implement missing features and integrate fips with existing workflows and build process.
+** Prerequisite
+*** Python 2.7.9
+On Manjaro Linux both python2 and python3 is installed. To link default python command to python2 use the following command:
+cd /usr/bin
+sudo rm -rf python
+sudo ln -sf python2.7 python
+*** cmake
+pacman -S cmake
+*** working c++ development environment
+**** OSX - XCode + command line tools
+**** Linux - make/gcc/clang 
+**** Windows Visual Studio 2013 or better
+*** get fips
+> cd ~
+> mkdir fips-workspace
+> cd fips-workspace
+> git clone https://github.com/floooh/fips.git
+** Fips commands
+*** Get Help
+./fips help
+*** List
+**** ./fips lists all
+list all available configs, build-tools, etc...
+**** ./fips list build-tools
+list supported build tools
+**** ./fips list build-types
+list supported build types
+**** ./fips list generators
+list supported generator names
+**** ./fips list configs
+list all available build configurations
+**** ./fips list registry
+list all git repos used in project with a short name.(defined in ./fips/registry.yml)
+**** ./fips list settings
+list fips settings of current project
+**** ./fips list exports
+list project exports
+**** ./fips list imports
+list project imports
+**** ./fips list
+same as ./fips list all
+*** Diagnostics
+**** ./fips diag all
+run all diagnosis functions
+**** ./fips diag tools
+check if required tools can be found
+**** ./fips diag configs
+check all configs to see if the required SDK is installed
+**** ./fips diag imports
+check all imports to see if they are up to date
+**** ./fips diag           
+same as 'diag all'
+
+*** Build
+**** ./fips build
+perform a build for current config
+**** ./fips build [config]
+perform a build for named config
+*** Clean
+**** ./fips clean
+perform clean for current config
+**** ./fips clean all
+     perform clean for all configs
+**** ./fips clean [config]
+perform clean for named config
+*** Clone
+clone [git-url] - git clone a project or dependencies
+*** Fetch
+**** ./fips fetch
+fetch current project imports
+**** ./fips fetch [project]
+fetch named project imports
+*** GDB
+debug a single target in current or named config
+**** ./fips gdb [-- args]
+**** ./fips gdb [target] [-- args]
+**** ./fips gdb [target] [config] [-- args]
+*** Generation
+Generate build files for current or named config
+**** ./fips gen
+**** ./fips [config]
+*** Initialization
+initialize a project directory as fips project
+**** ./fips init [proejct]
+*** Make
+build a single target in current or named config
+**** ./fips make
+**** ./fips make [target]
+**** ./fips make [target] [config]
+*** Open
+open IDE for current or named config
+**** ./fips open
+**** ./fips open [config]
+*** Run
+run a build target for current or named config
+**** ./fips run [-- args]
+**** ./fips run [target] [--args]
+**** ./fips run [target] [config] [--args]
+*** Set
+**** ./fips set config [config name]
+set active build config
+**** ./fips set target [target name]
+set active run target
+**** ./fips set jobs [num-build-jobs]
+set number of parallel build jobs
+**** ./fips set ccache [on|off]
+enable/disable using ccache
+*** Setup
+setup cross platform SDK
+**** ./fips setup emscripten
+**** ./fips setup nacl
+**** ./fips setup android
+*** Unset
+**** ./fips unset [config|target|jobs|ccache]
+see set
+*** valgrind
+debug a single target in current or named config
+**** ./fips valgrind
+**** ./fips valgrind [target]
+**** ./fips valgrind [target] [config]
