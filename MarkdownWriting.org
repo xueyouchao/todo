@@ -1,0 +1,13 @@
+* Install Markdown and Pandoc
+* Install texlive engine for Pandoc to Export Markdown file to PDF file
+** Packages need to be installed:
+*** texlive-bin
+*** texlive-core
+*** texlive-fontsextra
+*** texlive-latexextra
+** Export Markdown file to PDF file
+*** pandoc test.md -o test.pdf
+*** The issue with the above simple command is a horizontal rule is displayed with short after export to pdf, the solution is :
+$ pandoc --standalone -t context -o out.tex input.md
+$ context out.tex
+(http://stackoverflow.com/questions/25657471/pandoc-md-to-pdf-full-size-horizontal-rule)

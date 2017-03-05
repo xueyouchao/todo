@@ -15,6 +15,7 @@
     )
   (global-set-key (kbd "<f5>") 'open-my-init-file)
 ** Install company
+   
 
 * Emacs Configuration for Chen's Config
 ** Install Emacs
