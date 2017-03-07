@@ -59,6 +59,24 @@ Get error about 'stddef.h' not found
 run clang --version to get the clang version installed e.g. 3.9.1
 edit FindLibClang.cmake under folder .emacs.d and add 3.9.1 to the file
 re-compile
+
+*** Using Gnu Globals for code navigation
+**** Make sure yaourt is installed
+***** yaourt global
+***** choose global to install
+**** dump index files to a local directories
+mkdir ~/obj
+cd /usr/include && sudo MAKEOBJDIRPREFIX=~/obj gtags
+(append more if you have more search paths)
+cd ~/yourprojectdir && gtags
+**** Installing gtags emacs plugin emacs-counsel-gtags
+**** Add the following to .emacs.d/lisp/init.el
+(setenv "GTAGSLIBPATH" (concat "/usr/include")
+                        ":"
+                        (file-truename "~/yourprojectdir"))
+(setenv "MAKEOBJDIRPREFIX" (file-truename "~/obj/"))
+(setq company-backends '((company-dabbrev-code company-gtags)))
+
 *** customize-group company -> turn on Company Auto Complete
 *** Using cpputils-cmake to create cmake project
 Demo project:
@@ -67,7 +85,7 @@ mkdir -p hello/src;printf "#include <stdio.h>\nint main(void) {\nprintf(\"hello 
 **** Step 2: cd into hello folder and run mkdir build
 **** Step 3: cd build and run cmake ../src
 **** Step 4: make
-
+     
 
 
 
