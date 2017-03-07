@@ -11,3 +11,5 @@
 $ pandoc --standalone -t context -o out.tex input.md
 $ context out.tex
 (http://stackoverflow.com/questions/25657471/pandoc-md-to-pdf-full-size-horizontal-rule)
+** Other Markdown template
+*** https://github.com/mszep/pandoc_resume 
