@@ -1,8 +1,8 @@
 * Install Markdown and Pandoc
 * Install texlive engine for Pandoc to Export Markdown file to PDF file
 ** Packages need to be installed:
-*** texlive-bin
 *** texlive-core
+*** texlive-bin
 *** texlive-fontsextra
 *** texlive-latexextra
 ** Export Markdown file to PDF file
